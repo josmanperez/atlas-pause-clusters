@@ -46,7 +46,7 @@ We need to have created a key that belongs to the project in question with the r
 
 # How to use it
 
-### Clone the repository
+### Clone the repository
 
 The first step would be to download or clone this repository in your local machine. 
 
