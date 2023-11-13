@@ -1,0 +1,16 @@
+{
+    "name": "pauseClusters",
+    "type": "SCHEDULED",
+    "disabled": false,
+    "config": {
+        "schedule": "0 20 * * 1-5",
+        "skip_catchup_events": false
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "getClusters"
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+[
+    {
+        "name": "getClusters",
+        "private": true
+    },
+    {
+        "name": "modifyCluster",
+        "private": true,
+        "run_as_system": true
+    }
+]

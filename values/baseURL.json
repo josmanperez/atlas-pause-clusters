@@ -1,0 +1,5 @@
+{
+    "name": "baseURL",
+    "value": "cloud.mongodb.com",
+    "from_secret": false
+}
