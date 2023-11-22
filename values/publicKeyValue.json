@@ -1,6 +1,5 @@
 {
-  "version": 20210102,
-  "name": "publicKeyValue",
-  "value": "dbwowdwa",
-  "from_secret": false
+    "name": "publicKeyValue",
+    "value": "dbwowdwa",
+    "from_secret": false
 }
