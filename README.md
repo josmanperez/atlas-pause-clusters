@@ -115,3 +115,7 @@ It is recommended to deploy your application with a `LOCAL`` deployment mode and
 # Additional notes
 
 Note that you can change when the Schedule trigger will run by modifying the `config.schedule` object. You can use https://crontab.guru/ to easily adapt to your needs.
+
+## `keep_until` tag
+
+You can create a resource [tag](https://www.mongodb.com/docs/atlas/tags/) in your cluster with the name `keep_until` and assign a value in the format `YYYYYY-MM-DD` and the date will be validated against today's date and if it is greater, the cluster will not be paused.
