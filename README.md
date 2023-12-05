@@ -18,11 +18,11 @@ The project is easily modifiable to perform the reverse operation of reactivatin
 
 # Structure
 
-This project consists of a [Schedule trigger](https://www.mongodb.com/docs/atlas/app-services/triggers/scheduled-triggers/#scheduled-triggers) that runs from Monday to Friday at 20:00. Note that the system that uses the Schedule trigger is based on the [crontab syntax](https://crontab.guru/), so if you want to modify it to run at another time it is very simple.
+This project consists of a [scheduled trigger](https://www.mongodb.com/docs/atlas/app-services/triggers/scheduled-triggers/#scheduled-triggers) that runs from Monday to Friday at 20:00. Note that the system that uses the Schedule trigger is based on the [crontab syntax](https://crontab.guru/), so if you want to modify it to run at another time it is very simple.
 
 ### The `pauseClusters` trigger
 
-This is the Schedule trigger that will run from Monday to Friday at 20:00 with the cron syntax of `0 20 * * 1-5` . It will execute the function linked `getClusters`.
+This is the scheduled trigger that will run from Monday to Friday at 20:00 with the cron syntax of `0 20 * * 1-5` . It will execute the function linked `getClusters`.
 
 ### The `getClusters` function
 
@@ -50,7 +50,7 @@ We need to have created a key that belongs to the project in question with the r
 
 # How to use this repository in your Atlas Project
 
-## Install the [App Services CLI](https://www.mongodb.com/docs/atlas/app-services/cli/)
+## 1. Install the [App Services CLI](https://www.mongodb.com/docs/atlas/app-services/cli/)
 
 In order to automatically deploy this project as an App Services application, we need to have the [App Services CLI](https://www.mongodb.com/docs/atlas/app-services/cli/) installed. 
 
@@ -66,7 +66,7 @@ Once this has been finished, we would need to authenticate. We will need the sam
 appservices login --api-key="<my api key>" --private-api-key="<my-private-api-key>"
 ```
 
-## Create an App Services Application directory 
+## 2. Create an App Services Application directory 
 
 On an empty directoy. Create a blank App Services application running the following command and giving whatever name we want. Is recommend to use a name related to the App Services application purposes, i.e., *PauseTriggers*.
 
@@ -74,7 +74,7 @@ On an empty directoy. Create a blank App Services application running the follow
 appservices app init
 ```
 
-## Import the application to your Atlas Project
+## 3. Import the application to your Atlas Project
 
 We are going to now import the empty application to our Atls project. For this, we need to execute the following command: 
 
@@ -96,7 +96,7 @@ The following is an example of the prompt:
 ? Please confirm the new app details shown above (y/N)
 ```
 
-## Add the `privateKey` as a secret for your application
+## 4. Add the `privateKey` as a secret for your application
 
 As mentioned above, in order to authenticate API calls we need a public and private key. The private key is not a good practice to have it as plain text, for this reason the `privateKeyValue.json` file is simply a [link to a secret](https://www.mongodb.com/docs/atlas/app-services/values-and-secrets/define-and-manage-secrets/#access-a-secret). Therefore, we must import the secret by executing the following command:
 
@@ -104,7 +104,7 @@ As mentioned above, in order to authenticate API calls we need a public and priv
 appservices secrets create --name=privateKey --value=<my-private-api-key>
 ```
 
-## Clone the repository
+## 5. Clone the repository
 
 In the same foder, we will download or clone this repository in your local machine. 
 
@@ -128,7 +128,7 @@ cp -Rf atlas-pause-clusters/* .
 rm -rf atlas-pause-clusters
 ```
 
-## Adapt your `values` files
+## 6. Adapt your `values` files
 
 Inside the `values` folder, you would need to modify two files. The `groupId.json` file and the `publicKeyValue.json` file. 
 
@@ -136,7 +136,7 @@ The `groupId.json` file will have the `project id` to which your clusters belong
 
 The `publicKeyValue.json` will have the [value of the public key](https://www.mongodb.com/docs/atlas/configure-api-access-project/#view-the-api-keys-in-a-project) created for the project with the **Project Owner** role.
 
-## Import the App to your Atlas project
+## 7. Import the App to your Atlas project
 
 The last step is to import the app. To do this we need to execute the following command:
 
@@ -148,8 +148,8 @@ Please note that this will ask for confirmation on changes made. These changes c
 
 # Additional notes
 
-Note that you can change when the Schedule trigger will run by modifying the `config.schedule` object. You can use https://crontab.guru/ to easily adapt to your needs.
+Note that you can change when the scheduled trigger will run by modifying the property `config.schedule` object. This can be found in the file `triggers/pauseClusters.json`. You can use https://crontab.guru/ to easily adapt to your needs.
 
 ## `keep_until` tag
 
-You can create a resource [tag](https://www.mongodb.com/docs/atlas/tags/) in your cluster with the name `keep_until` and assign a value in the format `YYYYYY-MM-DD` and the date will be validated against today's date and if it is greater, the cluster will not be paused.
+You can create a resource [tag](https://www.mongodb.com/docs/atlas/tags/) in your cluster with the name `keep_until` and assign a value in the format `YYYY-MM-DD` and the date will be validated against today's date and if it is greater, the cluster will not be paused.
