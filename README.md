@@ -82,7 +82,7 @@ We are going to now import the empty application to our Atls project. For this, 
 appservices push
 ```
 
-This command will ask us a series of questions. It is recommended to deploy your application with a `LOCAL` deployment mode and select the service provider and region that suits you best (it is good practice to deploy the one closest or equal to where your clusters are deployed). For the environment, select whatever you prefer.
+This command will ask us a series of questions. It is recommended to deploy your application with a [`LOCAL` deployment mode](https://www.mongodb.com/docs/atlas/app-services/apps/deployment-models-and-regions/#local-deployment) as this will make the app available in a single cloud provider region. You can then select the service provider and region that suits you best (it is good practice to deploy the one closest or equal to where your clusters are deployed). For the environment, select whatever you prefer.
 
 The following is an example of the prompt: 
 
@@ -96,7 +96,7 @@ The following is an example of the prompt:
 ? Please confirm the new app details shown above (y/N)
 ```
 
-## Add the `pivateKey` as a secret for your application
+## Add the `privateKey` as a secret for your application
 
 As mentioned above, in order to authenticate API calls we need a public and private key. The private key is not a good practice to have it as plain text, for this reason the `privateKeyValue.json` file is simply a [link to a secret](https://www.mongodb.com/docs/atlas/app-services/values-and-secrets/define-and-manage-secrets/#access-a-secret). Therefore, we must import the secret by executing the following command:
 
@@ -116,13 +116,13 @@ Once cloned, a new folder `atlas-pause-clusters` will be created. The following 
 
 Doing the above with the shell commands would be: 
 
-### Copying from the cloned repository to the main app directory
+1. Copying from the cloned repository to the main app directory
 
 ```shell
 cp -Rf atlas-pause-clusters/* .
 ```
 
-### Delete the cloned repository
+2. Delete the cloned repository
 
 ```shell
 rm -rf atlas-pause-clusters
